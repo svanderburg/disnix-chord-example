@@ -1,16 +1,30 @@
 { pkgs ? import <nixpkgs> { inherit system; }
 , system ? builtins.currentSystem
+, stateDir
+, logDir
+, runtimeDir
+, tmpDir
+, forceDisableUserChange
+, processManager
 }:
 
 let
+  createManagedProcess = import ../../../nix-processmgmt/nixproc/create-managed-process/agnostic/create-managed-process-universal.nix {
+    inherit pkgs runtimeDir tmpDir forceDisableUserChange processManager;
+  };
+
   callPackage = pkgs.lib.callPackageWith (pkgs // self);
 
   self = rec {
     ChordServer = callPackage ../pkgs/ChordServer { };
 
-    ChordBootstrapNode = callPackage ../pkgs/ChordBootstrapNode { };
+    ChordBootstrapNode = callPackage ../pkgs/ChordBootstrapNode {
+      inherit createManagedProcess;
+    };
 
-    ChordNode = callPackage ../pkgs/ChordNode { };
+    ChordNode = callPackage ../pkgs/ChordNode {
+      inherit createManagedProcess;
+    };
 
     openchord = callPackage ../pkgs/openchord { };
   };

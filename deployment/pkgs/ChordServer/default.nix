@@ -14,7 +14,7 @@ stdenv.mkDerivation {
     cat > $out/bin/chord-server <<EOF
     #! ${stdenv.shell} -e
 
-    ${jdk}/bin/java -classpath $out/share/java:$(echo ${openchord}/share/java/*.jar) ChordServer "\$@"
+    exec ${jdk}/bin/java -classpath $out/share/java:$(echo ${openchord}/share/java/*.jar) ChordServer "\$@"
     EOF
     chmod +x $out/bin/chord-server
   '';
