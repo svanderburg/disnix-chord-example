@@ -4,6 +4,12 @@ A public Disnix example deploying a Distributed Hash Table (DHT) consisting of a
 network of Chord nodes. It has been based on
 [OpenChord](http://open-chord.sourceforge.net).
 
+Prerequisites
+=============
+To deploy this example system, you need a checkout of the
+[Nix process management framework](https://github.com/svanderburg) in the same
+base directory.
+
 Usage
 =====
 There are three ways to try to deploy this example.
