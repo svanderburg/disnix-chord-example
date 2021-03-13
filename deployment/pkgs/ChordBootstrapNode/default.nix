@@ -1,9 +1,7 @@
 {stdenv, createManagedProcess, ChordServer}:
-{port, instanceSuffix ? ""}:
+{port, instanceSuffix ? "", instanceName ? "ChordBootstrapNode${instanceSuffix}"}:
 
 let
-  instanceName = "ChordBootstrapNode${instanceSuffix}";
-
   ChordBootstrapNode = stdenv.mkDerivation {
     name = instanceName;
     buildCommand = ''
@@ -17,10 +15,10 @@ let
 };
 in
 createManagedProcess {
-  name = instanceName;
+  inherit instanceName;
+
   description = "Chord Bootstrap Node";
   foregroundProcess = "${ChordBootstrapNode}/bin/chord-node";
-  inherit instanceName;
 
   overrides = {
     sysvinit = {
