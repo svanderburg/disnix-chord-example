@@ -31,7 +31,10 @@ rec {
   ChordNode1 = rec {
     name = "ChordNode1";
     port = ids.ports.ChordNode1 or 0;
-    pkg = customPkgs.ChordNode { inherit port; };
+    pkg = customPkgs.ChordNode {
+      inherit port;
+      instanceSuffix = "1";
+    };
     type = processType;
     dependsOn = {
       inherit ChordBootstrapNode;
@@ -42,7 +45,10 @@ rec {
   ChordNode2 = rec {
     name = "ChordNode2";
     port = ids.ports.ChordNode2 or 0;
-    pkg = customPkgs.ChordNode { inherit port; };
+    pkg = customPkgs.ChordNode {
+      inherit port;
+      instanceSuffix = "2";
+    };
     type = processType;
     dependsOn = {
       inherit ChordBootstrapNode;
@@ -53,7 +59,10 @@ rec {
   ChordNode3 = rec {
     name = "ChordNode3";
     port = ids.ports.ChordNode3 or 0;
-    pkg = customPkgs.ChordNode { inherit port; };
+    pkg = customPkgs.ChordNode {
+      inherit port;
+      instanceSuffix = "3";
+    };
     type = processType;
     dependsOn = {
       inherit ChordBootstrapNode;

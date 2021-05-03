@@ -51,13 +51,15 @@ let
               "${pkgs.libxml2}/bin/xmllint --xpath \"/manifest/profiles/profile[@name='test1']/text()\" ${manifest}/manifest.xml"
           )
           test1.succeed("sleep 10")
+
+          # We connect a new node to the network, deliberately connecting from test1 to the first chord node on the test2 machine
           test1.succeed(
-              "((echo 'joinN -port 9000 -bootstrap test2:8001'; sleep 10; echo 'refsN'; echo 'exit'; echo 'y') | {}/bin/openchord-console > out) &".format(
+              "((echo 'joinN -port 9000 -bootstrap test2:8002'; sleep 10; echo 'refsN'; echo 'exit'; echo 'y') | {}/bin/openchord-console > out) &".format(
                   test1Profile[:-1]
               )
           )
           test1.succeed("sleep 30")
-          test1.succeed("[ $(grep -c 'ocsocket://test' out) -eq 6 ]")
+          test1.succeed("[ $(grep -c 'ocsocket://test' out) -eq 7 ]")
         '';
       };
   };
