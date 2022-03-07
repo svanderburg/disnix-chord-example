@@ -1,4 +1,4 @@
-{stdenv, fetchurl, ant, jdk, unzip}:
+{stdenv, lib, fetchurl, ant, jdk, unzip}:
 
 stdenv.mkDerivation {
   name = "openchord";
@@ -34,7 +34,7 @@ stdenv.mkDerivation {
   '';
   meta = {
     description = "A Java implementation of the Chord Distributed Hash Table (DHT)";
-    license = stdenv.lib.licenses.gpl2Plus;
-    platforms = with stdenv.lib.platforms; linux ++ darwin;
+    license = lib.licenses.gpl2Plus;
+    platforms = with lib.platforms; linux ++ darwin;
   };
 }

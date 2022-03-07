@@ -1,4 +1,4 @@
-{stdenv, jdk, openchord}:
+{stdenv, lib, jdk, openchord}:
 
 stdenv.mkDerivation {
   name = "ChordServer";
@@ -19,6 +19,6 @@ stdenv.mkDerivation {
     chmod +x $out/bin/chord-server
   '';
   meta = {
-    license = stdenv.lib.licenses.gpl2Plus;
+    license = lib.licenses.gpl2Plus;
   };
 }
