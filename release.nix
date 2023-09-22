@@ -54,7 +54,7 @@ let
 
           # We connect a new node to the network, deliberately connecting from test1 to the first chord node on the test2 machine
           test1.succeed(
-              "((echo 'joinN -port 9000 -bootstrap test2:8002'; sleep 10; echo 'refsN'; echo 'exit'; echo 'y') | {}/bin/openchord-console > out) &".format(
+              "((echo 'joinN -port 9000 -bootstrap test2:8002'; sleep 10; echo 'refsN'; echo 'exit'; echo 'y') | {}/bin/openchord-console > out) >&2 &".format(
                   test1Profile[:-1]
               )
           )
